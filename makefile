@@ -5,7 +5,7 @@ MIPS_CC = mips-linux-gnu-gcc
 MIPS_OBJCOPY = mips-linux-gnu-objcopy
 
 # Turn on all warnings, and enable optimisations
-MIPS_CPPFLAGS = -W -Wall -O3 -fno-builtin -march=mips1
+MIPS_CPPFLAGS = -W -Wall -O3 -fno-builtin -march=mips1 -mfp32
 
 # Avoid standard libraries etc. being brought in, and link statically
 MIPS_LDFLAGS = -nostdlib -Wl,-melf32btsmip -march=mips1 -nostartfiles -mno-check-zero-division -Wl,--gpsize=0 -static -Wl,-Bstatic
