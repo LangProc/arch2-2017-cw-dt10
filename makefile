@@ -5,7 +5,7 @@ MIPS_CC = mips-linux-gnu-gcc
 MIPS_OBJCOPY = mips-linux-gnu-objcopy
 
 # Turn on all warnings, and enable optimisations
-MIPS_CPPFLAGS = -W -Wall -O3 -fno-builtin
+MIPS_CPPFLAGS = -W -Wall -O3 -fno-builtin -march=mips1
 
 # Avoid standard libraries etc. being brought in, and link statically
 MIPS_LDFLAGS = -nostdlib -Wl,-melf32btsmip -march=mips1 -nostartfiles -mno-check-zero-division -Wl,--gpsize=0 -static -Wl,-Bstatic
@@ -15,6 +15,8 @@ MIPS_LDFLAGS += -Wl,--build-id=none
 %.mips.o : %.c
 	$(MIPS_CC) $(MIPS_CPPFLAGS) -c $< -o $@
 
+%.mips.o : %.s
+	$(MIPS_CC) $(MIPS_CPPFLAGS) -S $< -o $@
 
 # Link a MIPS object file and place it at the locations required in the
 # spec using linker.ld
